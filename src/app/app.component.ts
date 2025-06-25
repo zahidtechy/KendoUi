@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-
-import { KENDO_DATEINPUTS } from '@progress/kendo-angular-dateinputs';
+import { KENDO_LAYOUT, KENDO_PANELBAR } from '@progress/kendo-angular-layout';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [KENDO_DATEINPUTS],
+  imports: [KENDO_LAYOUT,KENDO_PANELBAR],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

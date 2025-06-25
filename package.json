@@ -25,6 +25,7 @@
     "@progress/kendo-angular-icons": "19.1.2",
     "@progress/kendo-angular-intl": "19.1.2",
     "@progress/kendo-angular-l10n": "19.1.2",
+    "@progress/kendo-angular-layout": "^19.1.2",
     "@progress/kendo-angular-navigation": "19.1.2",
     "@progress/kendo-angular-popup": "19.1.2",
     "@progress/kendo-angular-utils": "19.1.2",
@@ -33,7 +34,8 @@
     "@progress/kendo-theme-default": "^11.0.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.14.10"
+    "zone.js": "~0.14.10",
+    "@progress/kendo-angular-progressbar": "19.1.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.2.20",
