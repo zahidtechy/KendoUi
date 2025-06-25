@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { KENDO_LAYOUT, KENDO_PANELBAR } from '@progress/kendo-angular-layout';
+import { MainComponent } from './shared/layouts/main/main.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [KENDO_LAYOUT,KENDO_PANELBAR],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
