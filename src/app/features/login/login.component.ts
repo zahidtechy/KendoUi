@@ -5,7 +5,7 @@ import { KENDO_LABEL } from "@progress/kendo-angular-label"
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-login',
+  selector: 'login',
   standalone: true,
   imports: [KENDO_INPUTS, KENDO_BUTTONS, KENDO_LABEL, ReactiveFormsModule],
   templateUrl: './login.component.html',
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     const userName = this.form.get('username')?.value;
     const password = this.form.get('password')?.value;
     if (this.form.valid) {
-      if (userName === 'admin' && password === '1234') {
+      if (userName == 'admin' && password == '1234') {
 
       }
     }
