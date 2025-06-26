@@ -3,17 +3,18 @@
         <h2>Login</h2>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <kendo-label>
-                <kendo-textbox [id]="'userName'" [type]="'text'" formControlName="username"
-                    placeholder="Username"></kendo-textbox>
+                <kendo-textbox [id]="'email'" [type]="'text'" formControlName="email" placeholder="Email">
+                </kendo-textbox>
             </kendo-label>
             <kendo-label>
-                <kendo-textbox [id]="'password'" [type]="'password'" formControlName="password"
-                    placeholder="Password"></kendo-textbox>
+                <kendo-textbox [id]="'password'" [type]="'password'" formControlName="password" placeholder="Password">
+                </kendo-textbox>
             </kendo-label>
             <kendo-label>
-                <button type="submit" kendoButton >Sign In</button>
+                <button type="submit" kendoButton>Sign In</button>
             </kendo-label>
         </form>
-        <small class="text-color mx-1">hint: userName:admin,password:1234</small>
+        <small class="text-color mx-1">hint: email:eve.holt&#64;reqres.i</small>
+        <small class="text-color mx-1">hint: passowrd:password:cityslicka</small>
     </div>
 </div>

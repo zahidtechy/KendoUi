@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { KENDO_INPUTS } from "@progress/kendo-angular-inputs";
 import { KENDO_BUTTONS } from "@progress/kendo-angular-buttons";
 import { KENDO_LABEL } from "@progress/kendo-angular-label"
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from '../../shared/auth/auth.service';
+import { Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'login',
@@ -11,27 +14,50 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
+
+  private _destroy: Subject<void> = new Subject<void>();
 
   form!: FormGroup;
 
-  constructor(private readonly fb: FormBuilder) { }
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly authService: AuthService,
+    private readonly router: Router
+  ) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      username: [''],
+      email: [''],
       password: ['']
     });
   }
 
   onSubmit(): void {
-    const userName = this.form.get('username')?.value;
+    const email = this.form.get('email')?.value;
     const password = this.form.get('password')?.value;
     if (this.form.valid) {
-      if (userName == 'admin' && password == '1234') {
-
-      }
+      this.authService.login(email, password)
+        .pipe(takeUntil(this._destroy))
+        .subscribe(
+          {
+            next: (response) => {
+              this.authService.isLoggedIn();
+              this.router.navigate(['/dashboard']);
+            },
+            error: (error) => {
+              console.error('Login failed', error);
+              // Handle login error, e.g., show a notification
+            }
+          }
+        );
     }
+  }
+
+  ngOnDestroy(): void {
+    // Cleanup if necessary
+    this._destroy.next();
+    this._destroy.unsubscribe();
   }
 
 }
