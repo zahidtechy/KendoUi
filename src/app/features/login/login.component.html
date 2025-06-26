@@ -1,0 +1,19 @@
+<div class="login-container">
+    <div class="login-box">
+        <h2>Login</h2>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <kendo-label>
+                <kendo-textbox [id]="'userName'" [type]="'text'" formControlName="username"
+                    placeholder="Username"></kendo-textbox>
+            </kendo-label>
+            <kendo-label>
+                <kendo-textbox [id]="'password'" [type]="'password'" formControlName="password"
+                    placeholder="Password"></kendo-textbox>
+            </kendo-label>
+            <kendo-label>
+                <button type="submit" kendoButton >Sign In</button>
+            </kendo-label>
+        </form>
+        <small class="text-color mx-1">hint: userName:admin,password:1234</small>
+    </div>
+</div>

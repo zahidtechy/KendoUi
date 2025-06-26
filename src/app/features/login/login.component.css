@@ -1,0 +1,56 @@
+.login-container {
+    background-image: url('/assets/images/login-background.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: 10px;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-box h2 {
+    color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.login-box kendo-label {
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+}
+
+.login-box button {
+    padding: 12px;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.login-box button:hover {
+    background-color: #2980b9;
+}
+
+.text-color {
+    color: red;
+}
+
+.mx-1 {
+    margin: 5px;
+}
