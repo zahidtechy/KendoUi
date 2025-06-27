@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { DrawerItem, DrawerSelectEvent, KENDO_LAYOUT } from "@progress/kendo-angular-layout"
+import { Router, RouterOutlet } from '@angular/router';
+import { DrawerSelectEvent, KENDO_LAYOUT } from "@progress/kendo-angular-layout"
 import { KENDO_BUTTONS } from "@progress/kendo-angular-buttons";
 import {
   SVGIcon,
-  bellIcon,
   calendarIcon,
+  dashboardOutlineIcon,
   envelopeLinkIcon,
-  inboxIcon,
   menuIcon,
   starOutlineIcon,
+  usersOutlineIcon,
 } from "@progress/kendo-svg-icons";
 
 
@@ -22,13 +22,14 @@ import {
 })
 export class MainComponent {
 
-  public selected = "Inbox";
-  public menuSvg: SVGIcon = menuIcon;
+  constructor(private readonly router: Router) { }
 
-  public items: Array<DrawerItem> = [
-    { text: "Inbox", svgIcon: inboxIcon, selected: true },
+  menuSvg: SVGIcon = menuIcon;
+
+  items = [
+    { text: "dashboard", svgIcon: dashboardOutlineIcon, selected: true, route: '/dashboard' },
     { separator: true },
-    { text: "Notifications", svgIcon: bellIcon },
+    { text: "user", svgIcon: usersOutlineIcon, route: '/user' },
     { text: "Calendar", svgIcon: calendarIcon },
     { separator: true },
     { text: "Attachments", svgIcon: envelopeLinkIcon },
@@ -36,7 +37,9 @@ export class MainComponent {
   ];
 
   public onSelect(ev: DrawerSelectEvent): void {
-    this.selected = ev.item.text;
+    const route = ev.item?.route;
+    if (route) {
+      this.router.navigate([route]);
+    }
   }
-
 }
