@@ -1,8 +1,16 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { DrawerSelectEvent, KENDO_LAYOUT } from "@progress/kendo-angular-layout"
+import { DrawerItem, DrawerSelectEvent, KENDO_LAYOUT } from "@progress/kendo-angular-layout"
 import { KENDO_BUTTONS } from "@progress/kendo-angular-buttons";
-import { alignJustifyIcon, cellsMergeVerticallyIcon, colResizeIcon, connectorIcon, gridIcon, imageIcon, insertTopIcon, layoutIcon, listOrderedIcon, menuIcon, SVGIcon, thumbnailsUpIcon, userIcon } from '@progress/kendo-svg-icons';
+import {
+  SVGIcon,
+  bellIcon,
+  calendarIcon,
+  envelopeLinkIcon,
+  inboxIcon,
+  menuIcon,
+  starOutlineIcon,
+} from "@progress/kendo-svg-icons";
 
 
 @Component({
@@ -13,39 +21,22 @@ import { alignJustifyIcon, cellsMergeVerticallyIcon, colResizeIcon, connectorIco
   styleUrl: './main.component.css'
 })
 export class MainComponent {
-  public selected = "Avatar";
-  public layoutSvg: SVGIcon = layoutIcon;
 
-  public items: Array<
-    | { text: string; svgIcon: SVGIcon; selected?: boolean }
-    | { separator: boolean }
-  > = [
-      { text: "Avatar", svgIcon: userIcon, selected: true },
-      { separator: true },
-      { text: "Card", svgIcon: imageIcon },
-      { separator: true },
-      { text: "ExpansionPanel", svgIcon: insertTopIcon },
-      { separator: true },
-      { text: "GridLayout", svgIcon: cellsMergeVerticallyIcon },
-      { separator: true },
-      { text: "PanelBar", svgIcon: menuIcon },
-      { separator: true },
-      { text: "Splitter", svgIcon: colResizeIcon },
-      { separator: true },
-      { text: "StackLayout", svgIcon: alignJustifyIcon },
-      { separator: true },
-      { text: "Stepper", svgIcon: listOrderedIcon },
-      { separator: true },
-      { text: "TabStrip", svgIcon: thumbnailsUpIcon },
-      { separator: true },
-      { text: "TileLayout", svgIcon: gridIcon },
-      { separator: true },
-      { text: "Timeline", svgIcon: connectorIcon },
-    ];
+  public selected = "Inbox";
+  public menuSvg: SVGIcon = menuIcon;
+
+  public items: Array<DrawerItem> = [
+    { text: "Inbox", svgIcon: inboxIcon, selected: true },
+    { separator: true },
+    { text: "Notifications", svgIcon: bellIcon },
+    { text: "Calendar", svgIcon: calendarIcon },
+    { separator: true },
+    { text: "Attachments", svgIcon: envelopeLinkIcon },
+    { text: "Favourites", svgIcon: starOutlineIcon },
+  ];
 
   public onSelect(ev: DrawerSelectEvent): void {
     this.selected = ev.item.text;
   }
-
 
 }
