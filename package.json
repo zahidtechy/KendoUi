@@ -5,10 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:ci": "ng build --configuration production --base-href /KendoUi/",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "test:ci": "ng test --watch=false --browsers=ChromeHeadlessCI --progress=false"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {

@@ -1,14 +1,12 @@
 name: CI/CD
 
-# Master builds run on the self-hosted runner registered for this repository.
+# A push to master runs on the self-hosted Windows runner, builds the app,
+# and publishes that build to the IIS site folder.
 # Pull requests run on GitHub-hosted runners so forked code never executes on that machine.
-# GitHub Pages is served from the docs folder on master.
 
 on:
   push:
     branches: [master]
-    paths-ignore:
-      - 'docs/**'
   pull_request:
     branches: [master]
   workflow_dispatch:
@@ -39,16 +37,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Test and build
-        run: node scripts/ci.mjs
+      - name: Build
+        run: npm run build
 
   build-and-publish:
-    name: Build and publish
+    name: Build and publish to IIS
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
     runs-on: [self-hosted, Windows, X64]
     timeout-minutes: 30
-    permissions:
-      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -62,11 +58,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Test and build
-        run: node scripts/ci.mjs
-        env:
-          CHROME_BIN: C:\Program Files\Google\Chrome\Application\chrome.exe
+      - name: Build
+        run: npm run build
 
-      - name: Publish GitHub Pages
-        shell: powershell
-        run: powershell -NoProfile -ExecutionPolicy Bypass -File scripts/publish-github-pages.ps1
+      - name: Publish to IIS
+        run: node scripts/publish-iis.mjs
